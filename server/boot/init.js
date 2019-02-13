@@ -6,11 +6,13 @@ module.exports = function (app) {
     {
       email: 'guro.bokum@email.com',
       password: '12345',
-      emailVerified: true
+      emailVerified: true,
+      score: 100
     }, {
       email: 'admin@email.com',
       password: '12345',
-      emailVerified: true
+      emailVerified: true,
+      score: 0
     }
   ]);
 
@@ -40,7 +42,8 @@ function customizeGameCRUD(app) {
       .then(word => {
         let game = {
           word_id: word.id,
-          state: _.map(word.value, () => (''))
+          state: _.map(word.value, () => ('')),
+          player_id: opts.accessToken.userId
         }
 
         return gameCreate.call(Game, game, opts, cb)

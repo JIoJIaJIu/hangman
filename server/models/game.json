@@ -25,11 +25,15 @@
     "state": {
       "type": "array",
       "default": []
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
     }
   },
   "validations": [],
   "relations": {
-    "user": {
+    "player": {
       "type": "belongsTo",
       "model": "Player",
       "foreignKey": "player_id"
@@ -51,7 +55,7 @@
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
-      "permission": "ALLOW"
+      "permission": "DENY"
     }
   ],
   "methods": {}

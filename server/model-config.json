@@ -41,7 +41,9 @@
           "*": false,
           "create": true,
           "findById": true,
-          "input": true
+          "input": true,
+          "finish": true,
+          "get": true
         }
       }
     }
