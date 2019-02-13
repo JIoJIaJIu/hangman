@@ -34,10 +34,20 @@ Backend is build with [loopback.io](https://loopback.io) and frontend with [Reac
   ```
 
 * Answer
-
+  ```
+  curl -X POST --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Accept: application/json' -d 'letter=a' '\
+  http://localhost:3000/api/Games/1/input?access_token=token_id'
+  ```
 
 * Get info about the game
   ```
   curl -X GET --header 'Accept: application/json' \
   'http://localhost:3000/api/Games/1?access_token=token_id'
+  ```
+
+* Finish the game
+  ```
+  curl -X POST --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' 'http://localhost:3000/api/Games/1/finish?access_token=token_id'
   ```
