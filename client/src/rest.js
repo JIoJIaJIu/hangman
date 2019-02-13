@@ -10,14 +10,18 @@ export function setToken(t) {
 
 export default {
   createGame: () => {
-    return fetch('/game', {
-      headers: {
-        'access_token': token
-      }
+    return fetch(`/games?access_token=${token}`, {
+      method: 'POST'
     });
   },
-  input: (id, letter) => {
-    return fetch(`/game/${id}/input`, {letter: letter})
+  inputGame: (id, letter) => {
+    return fetch(`/games/${id}/input?access_token=${token}`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: `letter=${letter}`
+    })
   },
   login: (username, password) => {
     return fetch(`/players/login`, {

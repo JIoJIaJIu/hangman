@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import './User.scss'
 import REST, { setToken } from '../../rest'
 import { login, logout } from './redux/actions'
+import { browserHistory } from 'react-router'
 
 class User extends React.Component {
   login(e) {
@@ -33,6 +34,7 @@ class User extends React.Component {
         }
         setToken(null);
         this.props.logout()
+        browserHistory.replace('/')
       })
       .catch(() => {})
   }
@@ -63,5 +65,5 @@ export default connect(
     token: state.auth.token
 }), {
   login,
-  logout
+  logout,
 })(User)

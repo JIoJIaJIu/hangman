@@ -4,6 +4,8 @@ import './HomeView.scss'
 import { connect } from 'react-redux'
 
 import { requestStartGame, startGame } from '../../Game/redux/actions'
+import { locationChange } from '../../../store/location'
+import { browserHistory, Router } from 'react-router'
 import REST from '../../../rest'
 
 export class HomeView extends React.Component {
@@ -20,13 +22,14 @@ export class HomeView extends React.Component {
     this.props.requestStartGame()
 
     REST.createGame().then((response) => {
-      if (response.code !== 202) {
+      if (response.status !== 200) {
         return this.printError();
       }
-      this.setState({loading: false})
-      this.props.startGame(response.id);
-    }, () => {
-      this.printError()
+      response.json().then(data => {
+        this.setState({loading: false})
+        this.props.startGame(data.id, data.state, data.maxAttempts);
+        browserHistory.push('/game')
+      })
     })
   }
 
@@ -53,12 +56,10 @@ export class HomeView extends React.Component {
   }
 }
 
-export default connect(null, {
-  requestStartGame,
-  startGame
-})(HomeView)
-  /*
+export default connect(null,
   dispatch => ({
-    requestStartGame: () => dispatch(requestStartGame())
+    requestStartGame,
+    startGame: (id, state, maxAttempts) => { dispatch(startGame(id, state, maxAttempts)) },
+    locationChange
   })
-  */
+)(HomeView)
