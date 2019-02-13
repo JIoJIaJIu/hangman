@@ -1,0 +1,17 @@
+.input {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  font-size: 80px;
+  text-align: center;
+}
+
+.letter {
+  margin: 1em 0.3em;
+  display: inline-block;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  color: green;
+  font-weight: bold;
+}
