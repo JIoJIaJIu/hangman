@@ -1,5 +1,4 @@
 import * as t from './constants'
-import { injectReducer } from '../../../store/reducers'
 
 const initialState = {
     loading: false,

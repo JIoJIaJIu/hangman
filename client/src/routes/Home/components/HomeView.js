@@ -46,7 +46,7 @@ export class HomeView extends React.Component {
         { this.state.loading ?
           <span>Loading..</span>
           :
-          <a href='/game' className='btn btn-primary' onClick={this.startGame} >Start the Game</a>
+          <a href='/game' className='btn btn-primary btn-lg' onClick={this.startGame} >Start the Game</a>
         }
       </div>
     );
