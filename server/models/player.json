@@ -1,0 +1,7 @@
+{
+  "name": "Player",
+  "base": "User",
+  "properties": {
+    "score": { "type": "number"}
+  }
+}

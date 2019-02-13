@@ -1,0 +1,58 @@
+{
+  "name": "Game",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "word_id"
+  ],
+  "properties": {
+    "maxAttempts": {
+      "type": "number",
+      "required": true,
+      "default": 5
+    },
+    "attempts": {
+      "type": "number",
+      "default": 0
+    },
+    "input": {
+      "type": "array",
+      "default": []
+    },
+    "state": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "Player",
+      "foreignKey": "player_id"
+    },
+    "word": {
+      "type": "belongsTo",
+      "model": "Word",
+      "foreignKey": "word_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}
