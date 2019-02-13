@@ -27,8 +27,8 @@ export class HomeView extends React.Component {
       }
       response.json().then(data => {
         this.setState({loading: false})
-        this.props.startGame(data.id, data.state, data.maxAttempts);
         browserHistory.push('/game')
+        this.props.startGame(data.id, data.state, data.maxAttempts);
       })
     })
   }
@@ -59,7 +59,7 @@ export class HomeView extends React.Component {
 export default connect(null,
   dispatch => ({
     requestStartGame,
-    startGame: (id, state, maxAttempts) => { dispatch(startGame(id, state, maxAttempts)) },
+    startGame: (id, state, maxAttempts) => { setTimeout(() => {dispatch(startGame(id, state, maxAttempts)) }, 100) }, //hardcode
     locationChange
   })
 )(HomeView)
