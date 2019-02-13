@@ -1,32 +1,38 @@
 import * as t from './constants'
 
 const initialState = {
-  loading: false,
+  active: true,
   attempts: 0,
   id: null,
+  loading: false,
   maxAttemtps: 0,
   word: null,
-  success: null,
-  score: null // Should be in user
+  score: null, // Should be in user
+  solved: null,
+  success: null
 }
 
 export default function reducer(state = initialState, action) {
-  console.log('Game/redux/reducer', action)
   switch (action.type) {
     case t.GAME_START_IS_REQUESTED:
       return Object.assign({}, state, {loading: true})
     case t.GAME_IS_STARTED:
       return Object.assign({}, state, {
-        loading: false,
+        active: true,
+        score: null,
+        success: null,
         id: action.id,
+        loading: false,
         maxAttempts: action.maxAttempts,
         word: action.word
       })
     case t.GAME_IS_FINISHED:
       return Object.assign({}, state, {
+        active: false,
         loading: false,
-        success: action.success,
-        score: action.score
+        score: action.score,
+        solved: action.solved,
+        success: null
       })
     case t.GAME_UPDATE:
       return Object.assign({}, state, {

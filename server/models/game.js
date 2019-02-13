@@ -76,7 +76,7 @@ module.exports = function(Game) {
   }
 
   Game.finish = function (id, cb) {
-    Game.findById(id, {include: 'player'})
+    Game.findById(id, {include: ['player', 'word']})
     .then(game => {
       if (!game.active) {
         throw new Error("Game is not active anymore");
@@ -84,11 +84,14 @@ module.exports = function(Game) {
 
       game.active = false;
       let solved = false;
-      if (_.join(game.state) === game.word) {
-        solved = true;
-      }
 
-      game.save()
+      game.word.get()
+      .then(word => {
+        if (_.join(game.state, '') === word.value) {
+          solved = true;
+        }
+        return game.save()
+      })
       .then(game => {
         return game.player.get()
       })

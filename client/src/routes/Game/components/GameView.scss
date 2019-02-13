@@ -18,3 +18,20 @@
   color: green;
   font-weight: bold;
 }
+
+.OK {
+  color: green;
+  margin-left: 1em;
+}
+
+.FAIL {
+  color: red;
+  margin-left: 1em;
+}
+
+.score {
+  span {
+    color: red;
+    font-weight: bold;
+  }
+}

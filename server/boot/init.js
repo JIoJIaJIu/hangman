@@ -37,7 +37,7 @@ function customizeGameCRUD(app) {
     Word.count()
       .then(count => {
         let wordId = _.random(0, count - 1); 
-        return app.models.Word.findOne({id: wordId})
+        return app.models.Word.findById(wordId)
       })
       .then(word => {
         let game = {

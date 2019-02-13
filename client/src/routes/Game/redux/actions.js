@@ -15,10 +15,10 @@ export const startGame = (id, word, maxAttempts) => {
   }
 }
 
-export const finishGame = (success, score) => {
+export const finishGame = (solved, score) => {
   return {
     type: t.GAME_IS_FINISHED,
-    success: success,
+    solved: solved,
     score: score
   }
 }

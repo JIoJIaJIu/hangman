@@ -23,6 +23,11 @@ export default {
       body: `letter=${letter}`
     })
   },
+  finishGame: (id) => {
+    return fetch(`/games/${id}/finish?access_token=${token}`, {
+      method: 'POST'
+    })
+  },
   login: (username, password) => {
     return fetch(`/players/login`, {
       headers: {
